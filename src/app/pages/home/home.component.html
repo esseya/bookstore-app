@@ -1,0 +1,22 @@
+<div
+ class="bg-light text-dark min-vh-100 d-flex flex-column justify-content-center align-items-center text-center px-4"
+ style="background: url('/assets/images/bookstore-bg.jpg') no-repeat center center / cover"
+>
+ <div class="bg-white bg-opacity-75 p-5 rounded shadow-lg">
+   <h1 class="display-4 mb-3">
+      <i class="fas fa-book-reader text-primary"></i>
+       Welcome{{ username ? ' ' + username : ' to BookNest' }}
+</h1>
+ <p class="lead mb-4">
+ Dive into your personal digital library — manage your books, discover new reads, and build your perfect collection.
+ </p>
+<div class="d-flex justify-content-center gap-3">
+ <button class="btn btn-primary btn-lg" (click)="goToMyBooks()">
+ <i class="fas fa-book"></i> My Books
+ </button>
+ <button class="btn btn-outline-secondary btn-lg" (click)="goToAllBooks()">
+ <i class="fas fa-search"></i> Browse All Books
+ </button>
+ </div>
+ </div>
+</div>
