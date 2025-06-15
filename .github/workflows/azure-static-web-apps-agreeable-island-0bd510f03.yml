@@ -2,8 +2,14 @@ name: Build and Deploy Azure Static Web App
 
 # This trigger has been changed to manual.
 # To deploy, go to the "Actions" tab in GitHub and click "Run workflow".
-on: 
-  workflow_dispatch
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - master
 
 jobs:
   build_and_deploy_job:
