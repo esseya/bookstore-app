@@ -24,7 +24,7 @@ export interface UpdateBookDto extends CreateBookDto {
   providedIn: 'root',
 })
 export class BookService {
-  private baseUrl = 'http://localhost:5209/api/book';
+  private baseUrl = 'bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.net/api/book';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
