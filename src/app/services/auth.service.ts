@@ -13,7 +13,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<void> {
     return this.http
-      .post<{ accessToken: string;}>('bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.net/api/authentication/login', { username, password })
+      .post<{ accessToken: string;}>('https://bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.net/api/authentication/login', { username, password })
       .pipe(
         tap(response => {
           localStorage.setItem(this.tokenKey, response.accessToken);
@@ -23,7 +23,7 @@ export class AuthService {
       );
   }
     register(username: string, email: string,  password: string): Observable<any> {
-    return this.http.post(`bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.net/api/authentication`, { username, email, password });
+    return this.http.post(`https://bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.net/api/authentication`, { username, email, password });
   }
 
   logout(): void {
