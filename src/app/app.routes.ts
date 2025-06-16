@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'books', component: BookListComponent, canActivate: [authGuard] },
   { path: 'books/add', component: BookFormComponent, canActivate: [authGuard] },
   { path: 'books/edit/:id', component: BookFormComponent, canActivate: [authGuard] },
-  { path: 'quotes', component: QuoteComponent, canActivate: [authGuard] },
+  { path: 'quotes', component: QuoteComponent},
   { path: 'books/all', component: AllBooksComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }
