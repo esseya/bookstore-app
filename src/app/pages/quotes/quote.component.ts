@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-quote',
+  standalone: true,  
   templateUrl: './quote.component.html',
+  imports: [],           
 })
 export class QuoteComponent {
   quotes: string[] = [
