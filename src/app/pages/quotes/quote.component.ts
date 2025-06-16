@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-quote',
-  standalone: true,  
+  standalone: true,
   templateUrl: './quote.component.html',
-  imports: [],           
+  imports: [CommonModule], 
 })
 export class QuoteComponent {
   quotes: string[] = [
