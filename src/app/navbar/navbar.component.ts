@@ -10,8 +10,15 @@ import { NgIf } from '@angular/common';
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {
+  isDarkMode = false;
   constructor(public authService: AuthService) {}
+    
 
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    const newTheme = this.isDarkMode ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+  }
   logout() {
     this.authService.logout();
   }
