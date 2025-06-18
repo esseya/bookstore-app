@@ -30,7 +30,6 @@ onSubmit(): void {
     const { username, password } = this.loginForm.value;
     this.authService.login(username, password).subscribe({
       next: () => {
-        console.log('Login successful, token:', localStorage.getItem('jwt_token'));
         this.router.navigate(['/']);
       },
       error: (err) => {
