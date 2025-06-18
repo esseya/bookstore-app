@@ -1,29 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { tap, map, catchError } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private tokenKey = 'jwt_token';
   loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
+  private baseUrl = 'https://bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.net/api/authentication';
+
   constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string): Observable<void> {
     return this.http
-      .post<{ accessToken: string;}>('https://bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.net/api/authentication/login', { username, password })
+      .post<{ accessToken: string }>(`${this.baseUrl}/login`, { username, password })
       .pipe(
         tap(response => {
           localStorage.setItem(this.tokenKey, response.accessToken);
           this.loggedIn.next(true);
         }),
-        map(() => {}) 
+        map(() => {}),
+        catchError(this.handleError)  // <-- Add error handling here
       );
   }
-    register(username: string, email: string,  password: string): Observable<any> {
-    return this.http.post(`https://bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.net/api/authentication`, { username, email, password });
+
+  register(username: string, email: string, password: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}`, { username, email, password }).pipe(
+      catchError(this.handleError)  // <-- Add error handling here
+    );
   }
 
   logout(): void {
@@ -42,5 +48,20 @@ export class AuthService {
 
   private hasToken(): boolean {
     return !!localStorage.getItem(this.tokenKey);
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMsg = 'An unknown error occurred';
+
+    if (error.error) {
+      // If your backend returns { message: "...", details: [...] }
+      if (error.error.message) {
+        errorMsg = error.error.message;
+      } else if (typeof error.error === 'string') {
+        errorMsg = error.error;
+      }
+    }
+
+    return throwError(() => new Error(errorMsg));
   }
 }

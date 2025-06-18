@@ -34,7 +34,7 @@ onSubmit(): void {
       },
       error: (err) => {
         console.error('Login failed:', err);
-        this.loginError = 'Invalid credentials';
+        this.loginError = err.message || 'Invalid credentials'; // Use error message from backend
       },
     });
   } else {
