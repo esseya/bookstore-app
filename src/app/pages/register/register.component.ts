@@ -35,7 +35,7 @@ export function passwordMatchValidator(control: AbstractControl): ValidationErro
 export class RegisterComponent {
   registerForm: FormGroup;
   registerError = '';
-  registerDetails: any;
+  registerDetails: string[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -73,6 +73,7 @@ export class RegisterComponent {
           this.registerDetails = Array.isArray(err.error)
             ? err.error.map((e: any) => e.description)
             : [];
+            console.error('Registration details:', this.registerDetails);
         },
       });
     } else {
