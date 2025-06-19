@@ -1,4 +1,4 @@
-// src/app/pages/register/register.component.ts
+
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -12,7 +12,7 @@ import { Router,  RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 
-// Custom validator to check if two fields match
+
 export function passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
   const password = control.get('password');
   const confirmPassword = control.get('confirmPassword');
@@ -35,6 +35,7 @@ export function passwordMatchValidator(control: AbstractControl): ValidationErro
 export class RegisterComponent {
   registerForm: FormGroup;
   registerError = '';
+  registerDetails: any;
 
   constructor(
     private fb: FormBuilder,
@@ -56,10 +57,9 @@ export class RegisterComponent {
     this.registerForm.markAllAsTouched();
 
     if (this.registerForm.valid) {
-      // --- UPDATE THIS LINE ---
+
       const { username, email, password } = this.registerForm.value;
 
-      // --- UPDATE THIS LINE ---
       this.authService.register(username, email, password).subscribe({
         next: () => {
           console.log('Registration successful');
@@ -67,7 +67,8 @@ export class RegisterComponent {
         },
         error: (err) => {
           console.error('Registration failed:', err);
-          this.registerError = err.error.message || 'Registration failed. Please try again.';
+          this.registerError = err.error?.message || 'Registration failed. Please try again.';
+          this.registerDetails = err.error?.details || [];
         },
       });
     } else {
