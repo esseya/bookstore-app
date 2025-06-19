@@ -49,12 +49,12 @@
       <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary w-100">
         <i class="fa fa-user-plus"></i> Register
       </button>
-        <div *ngIf="registerError" class="alert alert-danger mt-3">
-          {{ registerError }}
-          <ul *ngIf="registerDetails.length">
-            <li *ngFor="let detail of registerDetails">{{ detail }}</li>
-          </ul>
-        </div>
+      <div *ngIf="registerError" class="alert alert-danger mt-3">
+        {{ registerError }}
+        <ul *ngIf="registerDetails.length">
+          <li *ngFor="let detail of registerDetails">{{ detail }}</li>
+        </ul>
+      </div>
     </form>
 
     </div>
