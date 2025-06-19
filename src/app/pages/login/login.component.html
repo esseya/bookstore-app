@@ -12,7 +12,12 @@
 
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input formControlName="password" type="password" id="password" class="form-control" required>
+        <div class="input-group">
+          <input [type]="showPassword ? 'text' : 'password'" formControlName="password" class="form-control" id="password">
+          <button type="button" class="btn btn-outline-secondary" (click)="toggleShowPassword()" tabindex="-1">
+            <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </button>
+        </div>
       </div>
 
       <button type="submit" class="btn btn-primary w-100">

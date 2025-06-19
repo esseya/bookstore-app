@@ -50,18 +50,8 @@ export class AuthService {
     return !!localStorage.getItem(this.tokenKey);
   }
 
-  private handleError(error: HttpErrorResponse) {
-    let errorMsg = 'An unknown error occurred';
+  private handleError(error: HttpErrorResponse): Observable<never> {
 
-    if (error.error) {
-      // If your backend returns { message: "...", details: [...] }
-      if (error.error.message) {
-        errorMsg = error.error.message;
-      } else if (typeof error.error === 'string') {
-        errorMsg = error.error;
-      }
-    }
-
-    return throwError(() => new Error(errorMsg));
+    return throwError(() => error);
   }
 }

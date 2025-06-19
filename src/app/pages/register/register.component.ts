@@ -36,6 +36,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
   registerError = '';
   registerDetails: string[] = [];
+  showPassword: boolean | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -44,7 +45,6 @@ export class RegisterComponent {
   ) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
-      // --- ADD THIS LINE ---
       email: ['', [Validators.required, Validators.email]], 
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
@@ -66,21 +66,22 @@ export class RegisterComponent {
           this.router.navigate(['/login']);
         },
         error: (err) => {
-          console.error('Registration failed:', err);
+
           this.registerError = 'Registration failed. Please try again.';
 
-          // Extract 'description' from the array response
           this.registerDetails = Array.isArray(err.error)
             ? err.error.map((e: any) => e.description)
             : [];
-            console.error('Registration details:', this.registerDetails);
+
         },
       });
     } else {
       console.warn('Registration form is invalid');
     }
   }
-
+toggleShowPassword() {
+  this.showPassword = !this.showPassword;
+}
   get f() {
     return this.registerForm.controls;
   }
