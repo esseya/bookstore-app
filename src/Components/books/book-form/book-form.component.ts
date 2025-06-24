@@ -56,9 +56,6 @@ export class BookFormComponent implements OnInit {
 
   onSubmit() {
     if (this.isEdit) {
-/*       this.bookService.updateBook(this.bookId.toString(), this.form.value).subscribe(() => {
-        this.router.navigate(['/books']);
-      });  */
       this.bookService.updateBook(this.form.value).subscribe({
         next: () => this.router.navigate(['/books']),
         error: err => console.error('Update failed', err)

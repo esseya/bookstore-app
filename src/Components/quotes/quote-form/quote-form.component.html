@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h2>{{ isEdit ? 'Edit Quote' : 'Add Quote' }}</h2>
+
+  <form [formGroup]="quoteForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-3">
+      <label for="text" class="form-label">Quote</label>
+      <textarea id="text" formControlName="text" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="author" class="form-label">Author</label>
+      <input id="author" type="text" class="form-control" formControlName="author">
+    </div>
+
+    <div class="mb-3">
+      <label for="publishedDate" class="form-label">Published Date</label>
+      <input id="publishedDate" type="date" class="form-control" formControlName="publishedDate">
+    </div>
+
+    <button type="submit" class="btn btn-success">{{ isEdit ? 'Update' : 'Create' }}</button>
+    <a routerLink="/quotes" class="btn btn-secondary ms-2">Cancel</a>
+  </form>
+</div>

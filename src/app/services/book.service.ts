@@ -24,7 +24,7 @@ export interface UpdateBookDto extends CreateBookDto {
   providedIn: 'root',
 })
 export class BookService {
-  private baseUrl = 'https://bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.net/api/book';
+  private baseUrl = 'bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.net/api/book';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -61,11 +61,6 @@ export class BookService {
     });
   }
 
-/*  updateBook(bookId: string, book: UpdateBookDto): Observable<any> {
-  return this.http.put(`${this.baseUrl}/${bookId}`, book, {
-    headers: this.getAuthHeaders(),
-  });
-}  */
   updateBook(book: any): Observable<any> {
     return this.http.put(`${this.baseUrl}`, book, {
       headers: this.getAuthHeaders(),
