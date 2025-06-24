@@ -9,7 +9,7 @@ export class AuthService {
   private tokenKey = 'jwt_token';
   loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
-  private baseUrl = 'bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.net/api/authentication';
+  private baseUrl = 'https://bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.netapi/authentication';
 
   constructor(private http: HttpClient, private router: Router) {}
 

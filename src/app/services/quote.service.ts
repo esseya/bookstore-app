@@ -24,7 +24,7 @@ export interface UpdateQuoteDto extends CreateQuoteDto {
   providedIn: 'root',
 })
 export class QuoteService {
-  private baseUrl = 'bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.net/api/quote';
+  private baseUrl = 'https://bookstore-api-20250615-hgezh6cfg5aqerbb.northeurope-01.azurewebsites.netapi/quote';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
